@@ -8,8 +8,11 @@ def main(argv):
     try:
         while line:
             # print(pattern.findall(line))
+            line = line.strip()
+            line = line.split()
+            # print(line)
             if len(line) > 2:
-                print("LongValueSum:" +pattern.findall(line)[1].lower() + "\t" + "1")
+                print("LongValueSum:" +line[5][1:].lower() + "\t" + "1")
                 # print ("LongValueSum:" + word.lower() + "\t" + "1")
                 # x = 1 / random.randint(0,99)
             line = sys.stdin.readline()
