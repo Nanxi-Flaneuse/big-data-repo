@@ -44,7 +44,7 @@ def clean_text(text):
         text = re.sub('[\d\n]', ' ', text)
         return ' '.join(remove_stopwords(text))
 
-def get_word_valence(word):
+def get_word_valence(word,dictionary):
     if not type(word) is str or word is None:
         print('text is not of type string:',word)
         return None
@@ -57,8 +57,10 @@ def get_word_valence(word):
         return None
     else:
         try:
-            return sentiment_dictionary[word]
+            print(dictionary[0])
+            return dictionary[word]
         except:
+            print('error occurred')
             return 0
         # result = 0
         # text = clean_text(text)
@@ -104,5 +106,6 @@ def valence(text):
 
 # testing
 # if __name__ == "__main__":
-#     b = 'I am a string'.encode('ASCII')
-#     print(valence(b))
+    # print(get_word_valence('acclaim'))
+    # b = 'I am a string'.encode('ASCII')
+    # print(valence(b))

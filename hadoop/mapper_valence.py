@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import sys, re
 import random
-from valence import clean_text, get_word_valence
+from valence import clean_text, get_word_valence, get_sent_dict, sentiment_dictionary
 import fileinput
 import os
 
@@ -22,10 +22,11 @@ def main(argv):
             line = clean_text(line)
             # print(line)
             for word in line:
-                print(prez_name + "\t" + str(get_word_valence(word)))
+                print(prez_name + "\t" + str(get_word_valence(word, sentiment_dictionary)))
             line = sys.stdin.readline()
     except EOFError as error:
         return None
 
 if __name__ == "__main__":
+    # print(sentiment_dictionary.keys())
     main(sys.argv)
