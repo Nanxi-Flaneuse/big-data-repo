@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 import sys, re
-import random
-from valence import clean_text, get_word_valence, get_sent_dict
-import fileinput
+# from valence import clean_text, get_word_valence, get_sent_dict
 import os
 
 # is there something wrong with how I'm reading the file
