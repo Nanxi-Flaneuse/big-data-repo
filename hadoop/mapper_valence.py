@@ -30,7 +30,9 @@ def main(argv):
             for word in line:
                 # print("LongValueSum:" + 'adams' + "\t" + str(get_word_valence(word)))
                 ##### to be uncommented ###########
-                print("LongValueSum:" + prez_name + "\t" + str(get_word_valence(word)))
+                # testing
+                print("LongValueSum:" + prez_name + "\t" + '1')
+                # print("LongValueSum:" + prez_name + "\t" + str(get_word_valence(word)))
             line = sys.stdin.readline()
     except EOFError as error:
         return None
