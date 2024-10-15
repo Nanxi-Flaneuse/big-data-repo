@@ -8,11 +8,8 @@ import os
 
 
 def main(argv):
-    # for line in fileinput.input():
-    #     if fileinput.isfirstline():
-    #         filename = fileinput.filename()
-    #         print("Filename:", filename)
-    # print(os.environ)
+
+    ##### to be uncommented ###########
     file = os.environ['mapreduce_map_input_file']
     prez_name = file[:-17]
     line = sys.stdin.readline()
@@ -21,8 +18,10 @@ def main(argv):
         while line:
             # print(pattern.findall(line))
             line = clean_text(line).split()
-            print(line)
+            # print(line)
             for word in line:
+                # print('adams' + "\t" + str(get_word_valence(word)))
+                ##### to be uncommented ###########
                 print(prez_name + "\t" + str(get_word_valence(word)))
             line = sys.stdin.readline()
     except EOFError as error:

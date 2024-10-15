@@ -5,6 +5,7 @@ from operator import itemgetter
 import sys
 
 current_word = None
+prez_freq = 0
 current_count = 0
 word = None
 
@@ -12,7 +13,8 @@ word = None
 for line in sys.stdin:
     # remove leading and trailing whitespace
     line = line.strip()
-
+    # print('printing out line')
+    # print(line)
     # parse the input we got from mapper.py
     word, count = line.split('\t', 1)
 
@@ -38,4 +40,4 @@ for line in sys.stdin:
 
 # do not forget to output the last word if needed!
 if current_word == word:
-    print ('%s\t%s' % (current_word, current_count/prez_freq))
+    print ('%s\t%s' % (current_word, current_count))
