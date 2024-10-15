@@ -26,7 +26,7 @@ def main(argv):
     # pattern = re.compile("[a-zA-Z][a-zA-Z0-9]*")
     try:
         while line:
-            line = clean_text(line).split()
+            # line = clean_text(line).split()
             for word in line:
                 # print("LongValueSum:" + 'adams' + "\t" + str(get_word_valence(word)))
                 ##### to be uncommented ###########
