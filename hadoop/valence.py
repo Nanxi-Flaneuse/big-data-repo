@@ -44,7 +44,7 @@ def clean_text(text):
         text = re.sub('[\d\n]', ' ', text)
         return ' '.join(remove_stopwords(text))
 
-def get_word_valence(word,dictionary):
+def get_word_valence(word):
     if not type(word) is str or word is None:
         print('text is not of type string:',word)
         return None
@@ -57,21 +57,11 @@ def get_word_valence(word,dictionary):
         return None
     else:
         try:
-            print(dictionary[0])
-            return dictionary[word]
+            return sentiment_dictionary[word]
         except:
-            print('error occurred')
+            # print('word not found')
             return 0
-        # result = 0
-        # text = clean_text(text)
-        # wordlist = text.lower().split()
-        # for w in wordlist:
-        #     try:
-        #         result += sentiment_dictionary[w]
-        #     except:
-        #         pass
-        #         # print('word not found in dictionary:',w)
-        # return result
+
 
 # takes in a line 
 def calc_valence(text):
@@ -88,10 +78,10 @@ def calc_valence(text):
         return None
     else:
         result = 0
-        text = clean_text(text)
-        wordlist = text.lower().split()
+        wordlist = text.split()
         for w in wordlist:
             try:
+                # print(w,str(sentiment_dictionary[w]))
                 result += sentiment_dictionary[w]
             except:
                 pass
@@ -105,7 +95,8 @@ def valence(text):
     return calc_valence(clean_text(text))
 
 # testing
-# if __name__ == "__main__":
-    # print(get_word_valence('acclaim'))
+if __name__ == "__main__":
+    # print(get_word_valence('abandon'))
+    print(valence('today great acclaim gather featival abandon to my pleasure'))
     # b = 'I am a string'.encode('ASCII')
     # print(valence(b))
