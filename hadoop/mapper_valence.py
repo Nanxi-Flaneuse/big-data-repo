@@ -11,17 +11,22 @@ import os
 def main(argv):
 
     ##### to be uncommented ###########
-    # file = os.environ['mapreduce_map_input_file']
+    try:
+        file = os.environ['mapreduce_map_input_file']
+    except KeyError:
+        file = os.environ['map_input_file']
+    name = file.split('/')[-1]
+    prez_name = name.split('_')[0]
     # prez_name = file[:-17]
-    line = sys.stdin.readline()
+    # line = sys.stdin.readline()
     # pattern = re.compile("[a-zA-Z][a-zA-Z0-9]*")
     try:
         while line:
             line = clean_text(line).split()
             for word in line:
-                print('adams' + "\t" + str(get_word_valence(word)))
+                # print('adams' + "\t" + str(get_word_valence(word)))
                 ##### to be uncommented ###########
-                # print(prez_name + "\t" + str(get_word_valence(word)))
+                print("LongValueSum:" + prez_name + "\t" + str(get_word_valence(word)))
             line = sys.stdin.readline()
     except EOFError as error:
         return None
@@ -30,3 +35,5 @@ if __name__ == "__main__":
     # print(sentiment_dictionary.keys())
     main(sys.argv)
     # print(os.environ['USER'])
+
+
