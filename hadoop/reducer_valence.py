@@ -5,7 +5,7 @@ from operator import itemgetter
 import sys
 
 current_word = None
-prez_freq = 0
+# prez_freq = 0
 current_count = 0
 word = None
 
@@ -29,14 +29,14 @@ for line in sys.stdin:
     # by key (here: word) before it is passed to the reducer
     if current_word == word:
         current_count += count
-        prez_freq += 1
+        # prez_freq += 1
     else:
         if current_word:
             # write result to STDOUT
-            print ('%s\t%s' % (current_word, current_count/prez_freq))
+            print ('%s\t%s' % (current_word, current_count))
         current_count = count
         current_word = word
-        prez_freq = 1
+        # prez_freq = 1
 
 # do not forget to output the last word if needed!
 if current_word == word:

@@ -46,14 +46,14 @@ def clean_text(text):
 
 def get_word_valence(word):
     if not (type(word) is str) or word is None:
-        print('text is not of type string:',word)
+        # print('text is not of type string:',word)
         return 0
     # checks if input has length > 0
     elif len(word) == 0:
         return 0
     # checks if input is printable
     elif not word.isprintable():
-        print('Text contains on printable characters')
+        # print('Text contains on printable characters')
         return 0
     else:
         try:

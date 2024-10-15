@@ -12,13 +12,17 @@ def main(argv):
 
     ##### to be uncommented ###########
     try:
-        file = os.environ['mapreduce_map_input_file']
-    except KeyError:
-        file = os.environ['map_input_file']
-    name = file.split('/')[-1]
-    prez_name = name.split('_')[0]
+        try:
+            file = os.environ['mapreduce_map_input_file']
+        except KeyError:
+            file = os.environ['map_input_file']
+        name = file.split('/')[-1]
+        prez_name = name.split('_')[0]
+
+    except:
+        prez_name = 'adams'
     # prez_name = file[:-17]
-    # line = sys.stdin.readline()
+    line = sys.stdin.readline()
     # pattern = re.compile("[a-zA-Z][a-zA-Z0-9]*")
     try:
         while line:
