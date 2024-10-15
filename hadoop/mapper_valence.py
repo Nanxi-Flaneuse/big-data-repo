@@ -11,12 +11,12 @@ import os
 def main(argv):
 
     ##### to be uncommented ###########
-    try:
-        file = os.environ['mapreduce_map_input_file']
-    except KeyError:
-        file = os.environ['map_input_file']
-    name = file.split('/')[-1]
-    prez_name = name.split('_')[0]
+    # try:
+    #     file = os.environ['mapreduce_map_input_file']
+    # except KeyError:
+    #     file = os.environ['map_input_file']
+    # name = file.split('/')[-1]
+    # prez_name = name.split('_')[0]
     # prez_name = file[:-17]
     # line = sys.stdin.readline()
     # pattern = re.compile("[a-zA-Z][a-zA-Z0-9]*")
@@ -24,9 +24,9 @@ def main(argv):
         while line:
             line = clean_text(line).split()
             for word in line:
-                # print('adams' + "\t" + str(get_word_valence(word)))
+                print("LongValueSum:" + 'adams' + "\t" + str(get_word_valence(word)))
                 ##### to be uncommented ###########
-                print("LongValueSum:" + prez_name + "\t" + str(get_word_valence(word)))
+                # print("LongValueSum:" + prez_name + "\t" + str(get_word_valence(word)))
             line = sys.stdin.readline()
     except EOFError as error:
         return None
