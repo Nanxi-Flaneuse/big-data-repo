@@ -3,7 +3,11 @@ from pyspark import SparkContext, SparkConf
 import findspark
 findspark.init()
 from pyspark.sql import SparkSession
-spark = SparkSession.builder.master("local[*]").getOrCreate()
+# spark = SparkSession.builder.master("local[*]").getOrCreate()
+spark = SparkSession \
+    .builder \
+    .appName("StructuredNetworkWordCount") \
+    .getOrCreate()
 import pyspark.sql.functions as F
 from pyspark.sql.types import IntegerType
 from pyspark.sql.functions import split, col, udf, sum
