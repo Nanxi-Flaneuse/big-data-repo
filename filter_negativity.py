@@ -16,6 +16,7 @@ import base64
 ## testing
 import math
 import mmh3
+import bitarray
 from bitarray import bitarray
 import requests
 import base64
