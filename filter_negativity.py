@@ -183,7 +183,7 @@ df.select(col("Seqno"), upperCaseUDF(col("Name")).alias("Name") ).show(truncate=
  # Start running the query that prints the words and their AFINN negativity aaffiliation to the console
 query = positive \
     .writeStream \
-    .outputMode("complete") \
+    .outputMode("append") \
     .format("console") \
     .start()
 
