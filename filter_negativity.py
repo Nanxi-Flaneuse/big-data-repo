@@ -9,9 +9,6 @@ from pyspark.sql.types import IntegerType
 from pyspark.sql.functions import split, col, udf, sum
 from pyspark.sql.types import StringType
 import base64
-import math
-import mmh3
-from bitarray import bitarray
 ## testing
 import math
 import mmh3
@@ -127,9 +124,17 @@ class filter(object):
 bloom = filter(len(neg_sents), 1024)
 for w in neg_sents:
     bloom.add(w)
-def filter_negativity(word):
+
+
+# return false if contains negative words
+def filter_negativity(words):
     ## testing
-    return bloom.check(word)
+    words = words.split()
+    for w in words:
+        if bloom.check(w):
+            return False
+    return True
+    # return bloom.check(word)
 
 
     # with open('vector.txt', 'r') as file:
@@ -141,7 +146,7 @@ def filter_negativity(word):
     # return bloom.check(word)
 # print(filter_negativity('happy'))
 # print(filter_negativity('damned'))
-# negUDF = udf(lambda x:filter_negativity(x),StringType()) 
+negUDF = udf(lambda x:filter_negativity(x),StringType()) 
 
 # Create DataFrame representing the stream of input lines from connection to localhost:9999
 lines = spark \
@@ -151,14 +156,17 @@ lines = spark \
     .option("port", 9999) \
     .load()
 
-words = lines.tail(1)[0]['value']
-for word in words:
-    if filter_negativity(word):
-        words = ''
-        break
+lines = lines.select(col("value"), negUDF(col("value")).alias("negative") )
+lines = lines.filter((lines.negative != 'false'))
+positive = lines.select(lines.columns[0])
+# words = lines.tail(1)[0]['value']
+# for word in words:
+#     if filter_negativity(word):
+#         words = ''
+#         break
 # # Split the lines into words
 # words = lines.select(
-#    F.explodse(
+#    F.explode(
 #        F.split(lines.value, " ")
 #    ).alias("word")
 # )
@@ -173,7 +181,7 @@ for word in words:
 df.select(col("Seqno"), upperCaseUDF(col("Name")).alias("Name") ).show(truncate=False)'''
 
  # Start running the query that prints the words and their AFINN negativity aaffiliation to the console
-query = words \
+query = positive \
     .writeStream \
     .outputMode("complete") \
     .format("console") \
